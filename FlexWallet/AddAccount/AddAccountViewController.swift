@@ -59,8 +59,8 @@ final class AddAccountViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     @objc func confirm() {
-        viewModel.sendAccountDataToFireStore()
-    //    delegate?.didPressConfirm()
+        viewModel.sendAccountDataToFireStore(title: "dfd", platform: "fsfd", type: textField.text ?? "")
+        delegate?.didPressConfirm()
         self.navigationController?.popViewController(animated: true)
     }
     

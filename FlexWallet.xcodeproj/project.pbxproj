@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E406D8B72BB4F86100FC99B3 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E406D8B62BB4F86100FC99B3 /* TransactionCell.swift */; };
+		E4392CAA2BCCA6730087CF2F /* AccountTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4392CA92BCCA6730087CF2F /* AccountTransactionView.swift */; };
+		E4392CAC2BCCA67D0087CF2F /* AccountTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4392CAB2BCCA67D0087CF2F /* AccountTransactionViewModel.swift */; };
+		E4392CAE2BCCA6890087CF2F /* AccountTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4392CAD2BCCA6890087CF2F /* AccountTransactionViewController.swift */; };
 		E4A1D1992B730E6C009331FA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1D1982B730E6C009331FA /* DashboardViewController.swift */; };
 		E4A6C5BB2B948AFA000AE609 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6C5BA2B948AFA000AE609 /* CustomHeader.swift */; };
 		E4A6C5C12B954CFB000AE609 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6C5C02B954CFB000AE609 /* Transaction.swift */; };
@@ -73,6 +76,9 @@
 
 /* Begin PBXFileReference section */
 		E406D8B62BB4F86100FC99B3 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		E4392CA92BCCA6730087CF2F /* AccountTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionView.swift; sourceTree = "<group>"; };
+		E4392CAB2BCCA67D0087CF2F /* AccountTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionViewModel.swift; sourceTree = "<group>"; };
+		E4392CAD2BCCA6890087CF2F /* AccountTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionViewController.swift; sourceTree = "<group>"; };
 		E4A1D1982B730E6C009331FA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E4A6C5BA2B948AFA000AE609 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		E4A6C5C02B954CFB000AE609 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -149,6 +155,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4392CA82BCCA65D0087CF2F /* AccountTransactions */ = {
+			isa = PBXGroup;
+			children = (
+				E4392CA92BCCA6730087CF2F /* AccountTransactionView.swift */,
+				E4392CAB2BCCA67D0087CF2F /* AccountTransactionViewModel.swift */,
+				E4392CAD2BCCA6890087CF2F /* AccountTransactionViewController.swift */,
+			);
+			path = AccountTransactions;
+			sourceTree = "<group>";
+		};
 		E4A6C5BF2B954CED000AE609 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,11 +229,12 @@
 		E4BB4B392B18C36800412F94 /* FlexWallet */ = {
 			isa = PBXGroup;
 			children = (
+				E4392CA82BCCA65D0087CF2F /* AccountTransactions */,
 				E4A6C5C22B954D97000AE609 /* Service */,
 				E4A6C5BF2B954CED000AE609 /* DataModels */,
 				E4E3F3222B8BDC8500197691 /* AddAccount */,
 				E4E3F3192B8BDC2700197691 /* Accounts */,
-				E4E3F3122B8BDBC000197691 /* Expenses */,
+				E4E3F3122B8BDBC000197691 /* Balance */,
 				E4E3F3032B8BD3EE00197691 /* Dashboard */,
 				E4E3F3022B8BD3D600197691 /* Settings */,
 				E4AF75012B2646F600D3A67C /* Main */,
@@ -271,7 +288,7 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		E4E3F3122B8BDBC000197691 /* Expenses */ = {
+		E4E3F3122B8BDBC000197691 /* Balance */ = {
 			isa = PBXGroup;
 			children = (
 				E4E3F3132B8BDBCE00197691 /* BalanceView.swift */,
@@ -280,7 +297,7 @@
 				E406D8B62BB4F86100FC99B3 /* TransactionCell.swift */,
 				E4E3F3042B8BD40400197691 /* AddExpense */,
 			);
-			path = Expenses;
+			path = Balance;
 			sourceTree = "<group>";
 		};
 		E4E3F3192B8BDC2700197691 /* Accounts */ = {
@@ -407,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4392CAE2BCCA6890087CF2F /* AccountTransactionViewController.swift in Sources */,
 				E4E3F3092B8BDB4E00197691 /* AddTransactionViewModel.swift in Sources */,
 				E4A6C5C42B954DA2000AE609 /* DataManager.swift in Sources */,
 				E4AF74FB2B1BC0BD00D3A67C /* CustomLabel.swift in Sources */,
@@ -425,6 +443,7 @@
 				E4E3F30F2B8BDB6900197691 /* SettingsView.swift in Sources */,
 				E4E3F31B2B8BDC3900197691 /* AccountsView.swift in Sources */,
 				E4E3F31F2B8BDC4C00197691 /* AccountsViewController.swift in Sources */,
+				E4392CAA2BCCA6730087CF2F /* AccountTransactionView.swift in Sources */,
 				E4E3F3262B8BDC9E00197691 /* AddAccountViewModel.swift in Sources */,
 				E4E3F3162B8BDBDB00197691 /* BalanceViewModel.swift in Sources */,
 				E4A6C5BB2B948AFA000AE609 /* CustomHeader.swift in Sources */,
@@ -439,6 +458,7 @@
 				E4BB4B3D2B18C36800412F94 /* SceneDelegate.swift in Sources */,
 				E4E3F3282B8BDCA700197691 /* AddAccountViewController.swift in Sources */,
 				E4CF08102B61CED5006B2EC3 /* SettingsViewController.swift in Sources */,
+				E4392CAC2BCCA67D0087CF2F /* AccountTransactionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

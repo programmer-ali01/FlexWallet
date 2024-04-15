@@ -9,8 +9,8 @@ import Foundation
 
 final class AddAccountViewModel {
     
-    func sendAccountDataToFireStore() {
-        let account = Account(title: "John's current account", platform: "Bank A", type: "Bank account")
+    func sendAccountDataToFireStore(title: String, platform: String, type: String) {
+        let account = Account(title: title, platform: platform, type: type)
         DataManager.shared.sendAccountDataToFirestore(account: account)
     }
     

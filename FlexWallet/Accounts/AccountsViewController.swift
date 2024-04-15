@@ -16,12 +16,6 @@ final class AccountsViewController: UIViewController, UIScrollViewDelegate {
   
     private var customView: AccountsView = AccountsView()
     
-//    var accountsCellData: [Account] = [
-//        Account(title: "John's current account", platform: "Barclays", type: "Bank account"),
-////        Account(title: "Sarah's upwork account", platform: "Upwork", type: "gig platform"),
-////        Account(title: "Kevin's deliveroo account", platform: "Deliveroo", type: "gig platform"),
-//    ]
-    
     private var viewModel: AccountsViewModel
     
     init(viewModel: AccountsViewModel) {
@@ -129,6 +123,9 @@ extension AccountsViewController: UICollectionViewDelegate, UICollectionViewData
 
 extension AccountsViewController: AddAccountDelegate {
     func didPressConfirm() {
-        customView.addConstraints(accountCellCount: viewModel.accountsCellData.count)
+        fetchAccountsData()
+        DispatchQueue.main.async {
+            self.customView.collectionView.reloadData()
+        }
     }
 }
