@@ -9,9 +9,11 @@ import UIKit
 
 final class DashboardViewController: UIViewController {
     
+    let customHeader = CustomHeader(title: "Dashboard", hideBackButton: true)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .gray
+        view.backgroundColor = .systemBackground
     }
 }

@@ -7,25 +7,18 @@
 
 import UIKit
 
-final class AddAccountViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    
-    let data = ["Option 1", "Option 2", "Option 3"]
-    var pickerView: UIPickerView!
-    var textField: UITextField!
-    var button = UIButton()
-    
-    var delegate: AddAccountDelegate?
-    
-   // private var customView: AddAccountView
+final class AddAccountViewController: UIViewController {
     
     private var viewModel: AddAccountViewModel
+    
+    private var customView: AddAccountView = AddAccountView()
     
     init(viewModel: AddAccountViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-      //  self.view = customView
-//        setupUI()
-//        addActions()
+        self.view = customView
+        customView.setupUI()
+        addActions()
     }
     
     required init?(coder: NSCoder) {
@@ -34,61 +27,59 @@ final class AddAccountViewController: UIViewController, UIPickerViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
-        // Create text field
-              textField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-              textField.borderStyle = .roundedRect
-              textField.placeholder = "Select an option"
-              textField.addTarget(self, action: #selector(showDropdown), for: .touchDown)
-              view.addSubviews([textField, button])
-              
-              // Create UIPickerView
-              pickerView = UIPickerView()
-              pickerView.delegate = self
-              pickerView.dataSource = self
-              
-              // Set UIPickerView as input view for text field
-              textField.inputView = pickerView
-        
-        textField.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 32, paddingRight: 32, height: 40)
-        button.anchor(top: textField.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 32, paddingRight: 32, height: 50)
-        
-        button.addTarget(self, action: #selector(confirm), for: .touchUpInside)
+
+    }
+    
+    func addActions() {
+        customView.confirmButton.addTarget(self, action: #selector(confirm), for: .touchUpInside)
+        customView.addAccountButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
+        customView.customHeader.backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
     
     @objc func confirm() {
-        viewModel.sendAccountDataToFireStore(title: "dfd", platform: "fsfd", type: textField.text ?? "")
-        delegate?.didPressConfirm()
-        self.navigationController?.popViewController(animated: true)
+        viewModel.sendAccountDataToFireStore(title: customView.usernameTextField.text ?? "", platform: customView.platformLabel.text ?? "", type: "")
+            self.navigationController?.popViewController(animated: true)
+ 
     }
     
-    @objc func showDropdown() {
-        // Show UIPickerView when text field is tapped
-        textField.becomeFirstResponder()
+    @objc func goBack() {
+        navigationController?.popToRootViewController(animated: true)
+        showTabBar(true)
     }
     
-    // MARK: - UIPickerViewDataSource methods
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1 // For single component
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data.count
-    }
-    
-    // MARK: - UIPickerViewDelegate methods
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return data[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Update text field with selected option
-        textField.text = data[row]
+    @objc func showActionSheet() {
+          // Create an instance of UIAlertController with preferredStyle set to .actionSheet
+          let actionSheet = UIAlertController(title: "Choose an option", message: nil, preferredStyle: .actionSheet)
+
+          // Add actions to the action sheet
+          let action1 = UIAlertAction(title: "Bank account", style: .default) { (action) in
+              // Handle Option 1 action
+           //   self.addAccountButton.setTitle("Option1", for: .normal)
+              self.customView.platformLabel.text = "Bank account"
+          }
+
+          let action2 = UIAlertAction(title: "Uber", style: .default) { (action) in
+              // Handle Option 2 action
+           //   self.addAccountButton.setTitle("Option2", for: .normal)
+              self.customView.platformLabel.text = "Uber"
+          }
         
-        textField.resignFirstResponder()
-    }
+        let action3 = UIAlertAction(title: "Deliveroo", style: .default) { (action) in
+            // Handle Option 2 action
+         //   self.addAccountButton.setTitle("Option2", for: .normal)
+            self.customView.platformLabel.text = "Deliveroo"
+        }
+    
+          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+          // Add actions to the action sheet
+          actionSheet.addAction(action1)
+          actionSheet.addAction(action2)
+          actionSheet.addAction(action3)
+          actionSheet.addAction(cancelAction)
+
+          // Present the action sheet
+        navigationController?.present(actionSheet, animated: true, completion: nil)
+      }
+
 }

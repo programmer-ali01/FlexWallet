@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CustomHeader: UIView {
     
@@ -48,7 +49,7 @@ class CustomHeader: UIView {
     func setupUI() {
         isUserInteractionEnabled = true
         addSubview(stackView)
-        backgroundColor = .orange
+        backgroundColor = .systemIndigo
         setupStackView()
         adjustButtons()
         setupConstraints()

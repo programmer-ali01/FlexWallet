@@ -38,7 +38,7 @@ final class TabBarViewController: UITabBarController {
         if #available(iOS 16.0, *) {
             let home = HomeViewController()
             
-            let homeIcon = UIImage(systemName: "plus")
+            let homeIcon = UIImage(systemName: "house")
             
             let nav1 = UITabBarItem(title: "Home", image: homeIcon, tag: 0)
             homeNavigationVC.tabBarItem = nav1
@@ -50,7 +50,7 @@ final class TabBarViewController: UITabBarController {
        
         let dashboardNavigationVC = UINavigationController()
         let dashboard = DashboardViewController()
-        let dashboardImage = UIImage(systemName: "circle")
+        let dashboardImage = UIImage(systemName: "chart.pie.fill")
         
         let nav2 = UITabBarItem(title: "Dashboard", image: dashboardImage, tag: 1)
         dashboardNavigationVC.tabBarItem = nav2
@@ -59,7 +59,7 @@ final class TabBarViewController: UITabBarController {
         
         let accountsNavigationVC = UINavigationController()
         let accounts = AccountsViewController(viewModel: AccountsViewModel())
-        let accountsImage = UIImage(systemName: "circle.fill")
+        let accountsImage = UIImage(systemName: "person.crop.circle")
         
         let nav3 = UITabBarItem(title: "Accounts", image: accountsImage, tag: 2)
         accountsNavigationVC.tabBarItem = nav3
@@ -68,7 +68,7 @@ final class TabBarViewController: UITabBarController {
         
         let settingsNavigationVC = UINavigationController()
         let settings = SettingsViewController()
-        let settingsImage = UIImage(systemName: "minus")
+        let settingsImage = UIImage(systemName: "gearshape")
         
         let nav4 = UITabBarItem(title: "Settings", image: settingsImage, tag: 3)
         settingsNavigationVC.tabBarItem = nav4

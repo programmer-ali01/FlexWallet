@@ -6,17 +6,12 @@
 //
 
 import UIKit
-import Charts
-
-protocol AddAccountDelegate: AnyObject {
-    func didPressConfirm()
-}
 
 final class AccountsViewController: UIViewController, UIScrollViewDelegate {
   
     private var customView: AccountsView = AccountsView()
     
-    private var viewModel: AccountsViewModel
+    var viewModel: AccountsViewModel
     
     init(viewModel: AccountsViewModel) {
         self.viewModel = viewModel
@@ -39,6 +34,8 @@ final class AccountsViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
+        fetchAccountsData()
+        showTabBar(true)
     }
     
     func fetchAccountsData() {
@@ -46,7 +43,8 @@ final class AccountsViewController: UIViewController, UIScrollViewDelegate {
             self.viewModel.accountsCellData = accounts ?? []
             print("DEBUG: \(self.viewModel.accountsCellData)")
             DispatchQueue.main.async {
-                self.customView.collectionView.reloadData()
+             //   self.customView.collectionView.reloadData()
+                self.customView.tableView.reloadData()
             }
         }
     }
@@ -65,67 +63,38 @@ final class AccountsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setupCollectionView() {
-        customView.collectionView.delegate = self
-        customView.collectionView.dataSource = self
-        customView.collectionView.register(AccountCell.self, forCellWithReuseIdentifier: "accountCell")
+        
+        customView.tableView.delegate = self
+        customView.tableView.dataSource = self
+        customView.tableView.register(AccountCell.self, forCellReuseIdentifier: "accountCell")
     }
     
     @objc func showAddAccount() {
         let addAccountVC = AddAccountViewController(viewModel: AddAccountViewModel())
-//        addAccountVC.modalPresentationStyle = .formSheet
-//        addAccountVC.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(addAccountVC, animated: true)
+        showTabBar(false)
     }
-    
-//    @objc func showActionSheet() {
-//          // Create an instance of UIAlertController with preferredStyle set to .actionSheet
-//          let actionSheet = UIAlertController(title: "Choose an option", message: nil, preferredStyle: .actionSheet)
-//          
-//          // Add actions to the action sheet
-//          let action1 = UIAlertAction(title: "Option 1", style: .default) { (action) in
-//              // Handle Option 1 action
-//              let a = AddAccountViewController()
-//              self.navigationController?.pushViewController(a, animated: true)
-//          }
-//          
-//          let action2 = UIAlertAction(title: "Option 2", style: .default) { (action) in
-//              // Handle Option 2 action
-//              print("Option 2 selected")
-//          }
-//          
-//          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//          
-//          // Add actions to the action sheet
-//          actionSheet.addAction(action1)
-//          actionSheet.addAction(action2)
-//          actionSheet.addAction(cancelAction)
-//          
-//          // Present the action sheet
-//          present(actionSheet, animated: true, completion: nil)
-//      }
 }
 
-extension AccountsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.accountsCellData.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width, height: 100)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCell", for: indexPath) as? AccountCell else { return UICollectionViewCell() }
-        cell.configureCell(with: viewModel.accountsCellData[indexPath.row])
-        return cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let accountTransactionView = AccountTransactionViewController(viewModel: AccountTransactionViewModel(type: viewModel.accountsCellData[indexPath.row].platform))
+        navigationController?.pushViewController(accountTransactionView, animated: true)
+        showTabBar(false)
     }
-}
-
-extension AccountsViewController: AddAccountDelegate {
-    func didPressConfirm() {
-        fetchAccountsData()
-        DispatchQueue.main.async {
-            self.customView.collectionView.reloadData()
-        }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath) as? AccountCell
+        cell?.configureCell(with: viewModel.accountsCellData[indexPath.row])
+        return cell!
     }
+    
 }

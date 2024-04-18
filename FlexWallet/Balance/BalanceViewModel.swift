@@ -11,6 +11,8 @@ final class BalanceViewModel {
     
     var date = Date()
     
+    var allTransactions: [Transaction] = []
+    
     init(date: Date) {
         self.date = date
     }

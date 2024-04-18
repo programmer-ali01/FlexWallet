@@ -8,11 +8,7 @@
 import Foundation
 
 final class AccountsViewModel {
-    var accountsCellData: [Account] = [
-//        Account(title: "John's current account", platform: "Barclays", type: "Bank account"),
-//        Account(title: "Sarah's upwork account", platform: "Upwork", type: "gig platform"),
-//        Account(title: "Kevin's deliveroo account", platform: "Deliveroo", type: "gig platform"),
-    ]
+    var accountsCellData: [Account] = []
     
     func fetchAccountsData(completion: @escaping ([Account]?, Error?) -> Void) {
         DataManager.shared.fetchAccounsFromFireStore { accounts, error in
@@ -25,7 +21,4 @@ final class AccountsViewModel {
             }
         }
     }
-    
-    
-    
 }

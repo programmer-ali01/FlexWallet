@@ -11,6 +11,11 @@
 		E4392CAA2BCCA6730087CF2F /* AccountTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4392CA92BCCA6730087CF2F /* AccountTransactionView.swift */; };
 		E4392CAC2BCCA67D0087CF2F /* AccountTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4392CAB2BCCA67D0087CF2F /* AccountTransactionViewModel.swift */; };
 		E4392CAE2BCCA6890087CF2F /* AccountTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4392CAD2BCCA6890087CF2F /* AccountTransactionViewController.swift */; };
+		E49942082BCF15A10059D42C /* AccountTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49942072BCF15A10059D42C /* AccountTransactionCell.swift */; };
+		E499420A2BCF3F8F0059D42C /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49942092BCF3F8F0059D42C /* AccountsManager.swift */; };
+		E499420C2BCF45500059D42C /* AccountTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499420B2BCF45500059D42C /* AccountTransactions.swift */; };
+		E499420E2BD0A3340059D42C /* UberEarnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499420D2BD0A3340059D42C /* UberEarnings.swift */; };
+		E49942102BD142290059D42C /* DeliverooEarnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499420F2BD142290059D42C /* DeliverooEarnings.swift */; };
 		E4A1D1992B730E6C009331FA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1D1982B730E6C009331FA /* DashboardViewController.swift */; };
 		E4A6C5BB2B948AFA000AE609 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6C5BA2B948AFA000AE609 /* CustomHeader.swift */; };
 		E4A6C5C12B954CFB000AE609 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6C5C02B954CFB000AE609 /* Transaction.swift */; };
@@ -79,6 +84,11 @@
 		E4392CA92BCCA6730087CF2F /* AccountTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionView.swift; sourceTree = "<group>"; };
 		E4392CAB2BCCA67D0087CF2F /* AccountTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionViewModel.swift; sourceTree = "<group>"; };
 		E4392CAD2BCCA6890087CF2F /* AccountTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionViewController.swift; sourceTree = "<group>"; };
+		E49942072BCF15A10059D42C /* AccountTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountTransaction\U0010Cell.swift"; sourceTree = "<group>"; };
+		E49942092BCF3F8F0059D42C /* AccountsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
+		E499420B2BCF45500059D42C /* AccountTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactions.swift; sourceTree = "<group>"; };
+		E499420D2BD0A3340059D42C /* UberEarnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberEarnings.swift; sourceTree = "<group>"; };
+		E499420F2BD142290059D42C /* DeliverooEarnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverooEarnings.swift; sourceTree = "<group>"; };
 		E4A1D1982B730E6C009331FA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E4A6C5BA2B948AFA000AE609 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		E4A6C5C02B954CFB000AE609 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -161,6 +171,7 @@
 				E4392CA92BCCA6730087CF2F /* AccountTransactionView.swift */,
 				E4392CAB2BCCA67D0087CF2F /* AccountTransactionViewModel.swift */,
 				E4392CAD2BCCA6890087CF2F /* AccountTransactionViewController.swift */,
+				E49942072BCF15A10059D42C /* AccountTransactionCell.swift */,
 			);
 			path = AccountTransactions;
 			sourceTree = "<group>";
@@ -170,6 +181,9 @@
 			children = (
 				E4A6C5C02B954CFB000AE609 /* Transaction.swift */,
 				E4B098BF2BBE16EF00A7B388 /* Account.swift */,
+				E499420B2BCF45500059D42C /* AccountTransactions.swift */,
+				E499420D2BD0A3340059D42C /* UberEarnings.swift */,
+				E499420F2BD142290059D42C /* DeliverooEarnings.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -178,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				E4A6C5C32B954DA2000AE609 /* DataManager.swift */,
+				E49942092BCF3F8F0059D42C /* AccountsManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -450,8 +465,11 @@
 				E4E3F3142B8BDBCE00197691 /* BalanceView.swift in Sources */,
 				E4E3F3182B8BDBF000197691 /* BalanceViewController.swift in Sources */,
 				E4CF08122B61CF0E006B2EC3 /* AddTransactionViewController.swift in Sources */,
+				E49942102BD142290059D42C /* DeliverooEarnings.swift in Sources */,
 				E4AF74F32B1BA90E00D3A67C /* CustomButton.swift in Sources */,
 				E4AF75032B26470900D3A67C /* TabBarViewController.swift in Sources */,
+				E499420A2BCF3F8F0059D42C /* AccountsManager.swift in Sources */,
+				E499420E2BD0A3340059D42C /* UberEarnings.swift in Sources */,
 				E4A1D1992B730E6C009331FA /* DashboardViewController.swift in Sources */,
 				E4A6C5C12B954CFB000AE609 /* Transaction.swift in Sources */,
 				E4B098C02BBE16EF00A7B388 /* Account.swift in Sources */,
@@ -459,6 +477,8 @@
 				E4E3F3282B8BDCA700197691 /* AddAccountViewController.swift in Sources */,
 				E4CF08102B61CED5006B2EC3 /* SettingsViewController.swift in Sources */,
 				E4392CAC2BCCA67D0087CF2F /* AccountTransactionViewModel.swift in Sources */,
+				E499420C2BCF45500059D42C /* AccountTransactions.swift in Sources */,
+				E49942082BCF15A10059D42C /* AccountTransactionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AccountCell: UICollectionViewCell {
+final class AccountCell: UITableViewCell {
     
     let accountTitle: UILabel = {
         let label = UILabel()
@@ -27,10 +27,11 @@ final class AccountCell: UICollectionViewCell {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupUI()
+ 
     }
     
     required init?(coder: NSCoder) {

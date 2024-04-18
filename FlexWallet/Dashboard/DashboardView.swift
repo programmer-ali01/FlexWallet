@@ -5,8 +5,12 @@
 //  Created by Alisena Mudaber on 2/25/24.
 //
 
-import UIKit
+import SwiftUI
 
-final class DashboardView {
-    
+struct DashboardView: View {
+    var body: some View {
+        VStack {
+            Text("Dashboard")
+        }
+    }
 }

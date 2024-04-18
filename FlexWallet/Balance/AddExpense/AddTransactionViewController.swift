@@ -53,6 +53,10 @@ final class AddTransactionViewController: UIViewController {
 extension AddTransactionViewController {
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
+        if let vc1 = self.navigationController?.topViewController as? BalanceViewController {
+            vc1.viewModel.allTransactions = []
+            vc1.fetchAllTransactions()
+        }
    //     showTabBar(false)
     }
     

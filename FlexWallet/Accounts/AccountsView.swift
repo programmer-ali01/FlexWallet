@@ -21,20 +21,21 @@ final class AccountsView: UIView {
     
     let menuButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = UIColor.black
         return button
     }()
     
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.isScrollEnabled = false
-        collection.backgroundColor = .lightGray
-        collection.layer.cornerRadius = 8
-       return collection
-    }()
+//    let collectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+//        collection.isScrollEnabled = false
+//        collection.backgroundColor = .lightGray
+//        collection.layer.cornerRadius = 8
+//       return collection
+//    }()
+    var tableView = UITableView(frame: .zero, style: .plain)
     
     let scrollView: UIScrollView = {
        let scroll = UIScrollView()
@@ -60,7 +61,9 @@ final class AccountsView: UIView {
         scrollView.addSubviews([
                                 accountsDescription,
                                 menuButton,
-                                collectionView])
+                                tableView
+                              //  collectionView
+        ])
     }
     
     func setupUI() {
@@ -77,14 +80,24 @@ final class AccountsView: UIView {
         menuButton.anchor(top: scrollView.topAnchor, right: rightAnchor, paddingTop: 20, paddingRight: 20, height: 48)
         accountsDescription.anchor(top: menuButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
         configureCollectionConstraints(accountCellCount: accountCellCount)
-
-//        bankAccountButton.anchor(top: accountsDescription.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24)
-//        uberAccountButton.anchor(top: bankAccountButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24)
-//        deliverooAccountButton.anchor(top: uberAccountButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24)
-//        upworkAccountButton.anchor(top: deliverooAccountButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24)
     }
     
     func configureCollectionConstraints(accountCellCount: Int) {
-        collectionView.anchor(top: accountsDescription.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 24, paddingRight: 24, width: UIScreen.main.bounds.size.width,  height: CGFloat(accountCellCount) * 100)
+//        collectionView.anchor(top: accountsDescription.bottomAnchor, 
+//                              left: leftAnchor,
+//                              right: rightAnchor,
+//                              paddingTop: 20,
+//                              paddingLeft: 24,
+//                              paddingRight: 24,
+//                              width: UIScreen.main.bounds.size.width,
+//                              height: CGFloat(accountCellCount) * 100)
+        tableView.anchor(top: accountsDescription.bottomAnchor,
+                                   left: leftAnchor,
+                                   right: rightAnchor,
+                                   paddingTop: 20,
+                                   paddingLeft: 24,
+                                   paddingRight: 24,
+                                   width: UIScreen.main.bounds.size.width,
+                                   height: CGFloat(accountCellCount) * 100)
     }
 }

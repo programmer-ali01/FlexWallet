@@ -11,9 +11,7 @@ final class BalanceViewController: UIViewController {
     
     private var customView: BalanceView = BalanceView()
     
-    private var viewModel: BalanceViewModel
-    
-    var allTransactions: [Transaction] = []
+    var viewModel: BalanceViewModel
     
     init(viewModel: BalanceViewModel) {
         self.viewModel = viewModel
@@ -41,8 +39,13 @@ final class BalanceViewController: UIViewController {
                 return
             }
             if let expenses = expenses {
-                self.allTransactions.append(contentsOf: expenses)
-                print("DEBUG all expenses: \(self.allTransactions)")
+                for item in expenses {
+                    if item.date == self.viewModel.date {
+                        self.viewModel.allTransactions.append(item)
+                    }
+                }
+              //  self.viewModel.allTransactions.append(contentsOf: expenses)
+                print("DEBUG all expenses: \(self.viewModel.allTransactions)")
                 DispatchQueue.main.async {
                     self.customView.tableView.reloadData()
                 }
@@ -57,9 +60,14 @@ final class BalanceViewController: UIViewController {
                 return
             }
             if let income = income {
-                self.allTransactions.append(contentsOf: income)
+                for item in income {
+                    if item.date == self.viewModel.date {
+                        self.viewModel.allTransactions.append(item)
+                    }
+                }
+             //   self.viewModel.allTransactions.append(contentsOf: income)
               //  self.allTransactions = income
-                print("DEBUG all income: \(self.allTransactions)")
+                print("DEBUG all income: \(self.viewModel.allTransactions)")
                 DispatchQueue.main.async {
                     self.customView.tableView.reloadData()
                 }
@@ -70,11 +78,6 @@ final class BalanceViewController: UIViewController {
     func fetchAllTransactions() {
         fetchAllExpenses()
         fetchAllIncome()
-        
-//    //    allTransactions = expenses.map { $0 as Any } + income.map { $0 as Any }
-//        DispatchQueue.main.async {
-//            self.customView.tableView.reloadData()
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,9 +121,9 @@ final class BalanceViewController: UIViewController {
 
 extension BalanceViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("DEBUG: count \(allTransactions.count)")
+        print("DEBUG: count \(viewModel.allTransactions.count)")
       //  return expenses.count + income.count
-        return allTransactions.count
+        return viewModel.allTransactions.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -129,7 +132,7 @@ extension BalanceViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as? TransactionCell
-        cell?.configure(with: allTransactions[indexPath.row])
+        cell?.configure(with: viewModel.allTransactions[indexPath.row])
         return cell!
     }
 }
