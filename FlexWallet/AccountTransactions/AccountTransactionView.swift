@@ -42,6 +42,13 @@ final class AccountTransactionView: UIView {
         tableView.anchor(top: customHeader.bottomAnchor,
                          left: leftAnchor,
                          right: rightAnchor,
-                         paddingTop: 50, height: 1000)
+                         paddingTop: 50,
+//                         paddingLeft: 24,
+//                         paddingRight: 24,
+                         height: 1200)
+        tableView.layer.cornerRadius = 4
+        tableView.isScrollEnabled = true
+        tableView.layer.masksToBounds = true
+        tableView.backgroundColor = .laurelGreen
     }
 }

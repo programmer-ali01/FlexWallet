@@ -11,9 +11,9 @@ import UIKit
 class AccountTransactionCell: UITableViewCell {
     
     
-    var expenseAmount: UILabel = {
+    var amount: UILabel = {
         let amount = UILabel()
-        amount.text = "100"
+        amount.text = ""
         amount.textColor = .black
         return amount
     }()
@@ -22,21 +22,24 @@ class AccountTransactionCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupUI()
- 
     }
     
     required init?(coder: NSCoder) {
-      //  super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
-      //  setupUI()
     }
     
     func setupUI() {
-        addSubviews([expenseAmount])
-        expenseAmount.anchor(top: topAnchor, left: leftAnchor, paddingTop: 20, paddingLeft: 20)
+        addSubviews([amount])
+        amount.anchor(top: topAnchor, left: leftAnchor, paddingTop: 20, paddingLeft: 20)
+        setupCellStyle()
+    }
+    
+    func setupCellStyle() {
+        backgroundColor = .laurelGreen
+        
     }
     
     func configure(with transaction: String) {
-        expenseAmount.text = transaction
+        amount.text = transaction
     }
 }
